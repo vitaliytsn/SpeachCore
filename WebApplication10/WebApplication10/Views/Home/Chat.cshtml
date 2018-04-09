@@ -1,0 +1,55 @@
+﻿@model noweGowno.Models.BingApi
+@{
+    ViewBag.Title = "SpeachRecognizer:XD";
+}
+
+
+@using (Html.BeginForm("Chat", "Home", FormMethod.Post))
+{
+    <!-- form goes here -->
+
+    <input type="submit" value="Start" />
+}
+
+<div>
+
+    <h4>SpeachRecognizer</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model._logText)
+        </dd>
+    </dl>
+</div>
+
+<h4>SendItThrowSocket</h4>
+<div class="container">
+   
+    <input type="button" id="sendmessage" value="Send" />
+    
+    <ul id="discussion"></ul>
+</div>
+@section scripts {
+    <!--Script references. -->
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.addNewMessageToPage = function (name, message) {
+                $('#discussion').append('<li><strong>' + htmlEncode(name)
+                    + '</strong>: ' + htmlEncode(message) + '</li>');
+            };
+            var myJsVariable =@Html.Raw(Json.Encode(ViewBag.logs));
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    chat.server.send(" ", myJsVariable);
+                });
+            });
+        });
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+}
