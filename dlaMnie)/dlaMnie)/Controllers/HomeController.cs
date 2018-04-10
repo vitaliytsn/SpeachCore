@@ -16,8 +16,10 @@ namespace SpeachCore.Controllers
     {
 
        public BingApi ba = new BingApi();
-       
-       
+
+        MqttClient client;
+        string clientId;
+
 
 
         public ActionResult Index()
@@ -33,19 +35,19 @@ namespace SpeachCore.Controllers
             TaskList.Add(Task.Factory.StartNew(() => ba.StartButton_Click()));
             ViewBag.logs = "you can start to speak";
             Task.WaitAll(TaskList.ToArray());
-         
-            while (ba._logText == null) ;
-            ViewBag.logs = ba._logText;            
-           
-
+            //starting mosquito broker
+            string BrokerAddress = "test.mosquitto.org";
+            clientId = Guid.NewGuid().ToString();
+            client = new MqttClient(BrokerAddress);
+            client.Connect(clientId);
+            //waiting the response from bing
+            while (ba._logText == null);
+            ViewBag.logs = ba._logText;
+            //seting the chanel
+            string Topic = "Speach";
+            // publish a message with QoS 2
+            client.Publish(Topic, Encoding.UTF8.GetBytes(ba._logText), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             return View("Index");
-            
-        }
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
