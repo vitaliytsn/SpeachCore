@@ -1,0 +1,33 @@
+﻿@model SpeachCore.Models.BingApi
+
+@{
+    ViewBag.Title = "SpeachRecognizer:XD";
+}
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <!-- form goes here -->
+
+    <input type="submit" value="Start" />
+}
+
+<div>
+
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Bing")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._logText)
+        </dd>
+    </dl>
+</div>
+<div>
+    <td>
+        <p>@ViewBag.logs</p>
+    </td>
+</div>
