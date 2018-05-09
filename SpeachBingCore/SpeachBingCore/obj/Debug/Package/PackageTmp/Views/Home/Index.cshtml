@@ -1,0 +1,27 @@
+﻿@model SpeachBingCore.Models.BingApi
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <!-- form goes here -->
+
+    <input type="submit" value="Start" />
+}
+
+<div>
+
+    <h4>Speach Recognizer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model._logText)
+        </dd>
+    </dl>
+</div>
+<div>
+    <td>
+        <p>@ViewBag.logs</p>
+    </td>
+</div>

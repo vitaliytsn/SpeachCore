@@ -21,6 +21,36 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>04/14/2018 20:31:49</publishTime>
     </File>
+    <File Include="bin/Bond.Attributes.dll">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.Attributes.pdb">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.dll">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.IO.dll">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.IO.pdb">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.JSON.dll">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.JSON.pdb">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.pdb">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.Reflection.dll">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
+    <File Include="bin/Bond.Reflection.pdb">
+      <publishTime>10/24/2017 15:45:02</publishTime>
+    </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/30/2016 15:07:42</publishTime>
     </File>
@@ -42,14 +72,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Microsoft.ApplicationInsights.dll">
       <publishTime>12/06/2016 14:09:52</publishTime>
     </File>
+    <File Include="bin/Microsoft.Bing.Messaging.dll">
+      <publishTime>12/07/2016 14:08:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bing.Speech.dll">
+      <publishTime>12/07/2016 14:08:26</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>10/16/2017 14:14:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Threading.dll">
+      <publishTime>04/05/2016 10:02:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Validation.dll">
+      <publishTime>11/03/2015 14:55:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>01/05/2012 10:08:46</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/03/2014 20:33:56</publishTime>
+      <publishTime>02/14/2018 11:29:28</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>09/21/2017 23:42:00</publishTime>
@@ -196,10 +238,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/21/2017 23:42:00</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.dll">
-      <publishTime>04/15/2018 13:39:20</publishTime>
+      <publishTime>05/07/2018 09:26:13</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.pdb">
-      <publishTime>04/15/2018 13:39:20</publishTime>
+      <publishTime>05/07/2018 09:26:13</publishTime>
     </File>
     <File Include="bin/SpeechClient.dll">
       <publishTime>10/23/2017 11:03:44</publishTime>
@@ -255,6 +297,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>04/14/2018 20:31:33</publishTime>
     </File>
+    <File Include="Resources/whatstheweatherlike.wav">
+      <publishTime>05/01/2018 11:21:06</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/14/2018 20:31:39</publishTime>
     </File>
@@ -291,6 +336,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>04/14/2018 20:31:47</publishTime>
     </File>
+    <File Include="Views/Home/Error.cshtml">
+      <publishTime>05/07/2018 09:01:46</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>04/14/2018 20:49:33</publishTime>
     </File>
@@ -307,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/14/2018 20:31:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/14/2018 21:40:16</publishTime>
+      <publishTime>05/07/2018 09:26:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

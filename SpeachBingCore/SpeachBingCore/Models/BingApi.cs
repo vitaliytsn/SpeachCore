@@ -7,8 +7,10 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.CognitiveServices.SpeechRecognition;
+
 
 
 namespace SpeachBingCore.Models
@@ -20,6 +22,7 @@ namespace SpeachBingCore.Models
         private const string DefaultSubscriptionKeyPromptMessage = "Paste your subscription key here to start";
 
         private string subscriptionKey;
+        private DataRecognitionClient dataClient;
 
         private MicrophoneRecognitionClient micClient;
 
@@ -28,16 +31,23 @@ namespace SpeachBingCore.Models
      
         public BingApi()
         {
+           
             this.Initialize();
         }
 
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion Events
+        public bool IsDataClientShortPhrase { get; set; }
+        public bool IsMicrophoneClientDictation { get; set; }
+        public bool IsDataClientDictation { get; set; }
+
+        public bool IsDataClientWithIntent { get; set; }
 
         public bool IsMicrophoneClientShortPhrase { get; set; }
 
         public bool IsMicrophoneClientWithIntent { get; set; }
+        private string Path = "";
 
         public string SubscriptionKey
         {
@@ -81,6 +91,12 @@ namespace SpeachBingCore.Models
         {
             get
             {
+                if (this.IsMicrophoneClientDictation ||
+                    this.IsDataClientDictation)
+                {
+                    return SpeechRecognitionMode.LongDictation;
+                }
+
                 return SpeechRecognitionMode.ShortPhrase;
             }
         }
@@ -129,31 +145,119 @@ namespace SpeachBingCore.Models
 
         private void Initialize()
         {
-            this.IsMicrophoneClientShortPhrase = true;
+            this.IsMicrophoneClientShortPhrase = false;
             this.IsMicrophoneClientWithIntent = false;
+            this.IsMicrophoneClientDictation = false;
+            this.IsDataClientShortPhrase = true;
+            this.IsDataClientWithIntent = false;
+            this.IsDataClientDictation = false;
             this.SubscriptionKey = this.GetSubscriptionKeyFromIsolatedStorage();
         }
 
-        public async void StartButton_Click()
+        public async Task StartButton_Click(string path)
         {
-            SubscriptionKey = "9f884b77ee8a414b9a706d48701a2208";
+            this.Path = path;
+            SubscriptionKey = "085033c37b92472b9fcd08d0f4c8711e";
             this.LogRecognitionStart();
-            if (this.micClient == null)
+
+            if (this.UseMicrophone)
             {
-                if (this.WantIntent)
+                if (this.micClient == null)
                 {
-                    this.CreateMicrophoneRecoClientWithIntent();
+                    if (this.WantIntent)
+                    {
+                        this.CreateMicrophoneRecoClientWithIntent();
+                    }
+                    else
+                    {
+                        this.CreateMicrophoneRecoClient();
+                    }
                 }
-                else
+
+                this.micClient.StartMicAndRecognition();
+            }
+            else
+            {
+                if (null == this.dataClient)
                 {
-                    this.CreateMicrophoneRecoClient();
+                    if (this.WantIntent)
+                    {
+                        this.CreateDataRecoClientWithIntent();
+                    }
+                    else
+                    {
+                        this.CreateDataRecoClient();
+                    }
                 }
+
+                this.SendAudioHelper((this.Mode == SpeechRecognitionMode.ShortPhrase) ? Path : this.LongWaveFile);
             }
 
-            this.micClient.StartMicAndRecognition();
-         
         }
+        private void SendAudioHelper(string wavFileName)
+        {
+            using (FileStream fileStream = new FileStream(wavFileName, FileMode.Open, FileAccess.Read))
+            {
+                // Note for wave files, we can just send data from the file right to the server.
+                // In the case you are not an audio file in wave format, and instead you have just
+                // raw data (for example audio coming over bluetooth), then before sending up any 
+                // audio data, you must first send up an SpeechAudioFormat descriptor to describe 
+                // the layout and format of your raw audio data via DataRecognitionClient's sendAudioFormat() method.
+                int bytesRead = 0;
+                byte[] buffer = new byte[1024];
 
+                try
+                {
+                    do
+                    {
+                        // Get more Audio data to send into byte buffer.
+                        bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+
+                        // Send of audio data to service. 
+                        this.dataClient.SendAudio(buffer, bytesRead);
+                    }
+                    while (bytesRead > 0);
+                }
+                finally
+                {
+                    // We are done sending audio.  Final recognition results will arrive in OnResponseReceived event call.
+                    this.dataClient.EndAudio();
+                }
+            }
+        }
+        private void CreateDataRecoClient()
+        {
+            this.dataClient = SpeechRecognitionServiceFactory.CreateDataClient(
+                this.Mode,
+                this.DefaultLocale,
+                this.SubscriptionKey);
+            this.dataClient.AuthenticationUri = this.AuthenticationUri;
+
+            // Event handlers for speech recognition results
+            if (this.Mode == SpeechRecognitionMode.ShortPhrase)
+            {
+                this.dataClient.OnResponseReceived += this.OnDataShortPhraseResponseReceivedHandler;
+            }
+
+            this.dataClient.OnPartialResponseReceived += this.OnPartialResponseReceivedHandler;
+            this.dataClient.OnConversationError += this.OnConversationErrorHandler;
+        }
+        private void CreateDataRecoClientWithIntent()
+        {
+            this.dataClient = SpeechRecognitionServiceFactory.CreateDataClientWithIntentUsingEndpointUrl(
+                this.DefaultLocale,
+                this.SubscriptionKey,
+                this.LuisEndpointUrl);
+            this.dataClient.AuthenticationUri = this.AuthenticationUri;
+
+            // Event handlers for speech recognition results
+            this.dataClient.OnResponseReceived += this.OnDataShortPhraseResponseReceivedHandler;
+            this.dataClient.OnPartialResponseReceived += this.OnPartialResponseReceivedHandler;
+            this.dataClient.OnConversationError += this.OnConversationErrorHandler;
+
+            // Event handler for intent result
+            this.dataClient.OnIntent += this.OnIntentHandler;
+        }
         private void LogRecognitionStart()
         {
             string recoSource;
