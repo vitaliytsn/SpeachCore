@@ -177,7 +177,6 @@ C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\M
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.AI.Web.xml
-C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.csprojResolveAssemblyReference.cache
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.csproj.CoreCompileInputs.cache
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.csproj.CopyComplete
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.dll
@@ -204,3 +203,4 @@ C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\B
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.Bing.Speech.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.VisualStudio.Threading.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.VisualStudio.Validation.xml
+C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.csprojResolveAssemblyReference.cache

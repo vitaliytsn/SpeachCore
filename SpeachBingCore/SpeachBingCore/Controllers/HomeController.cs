@@ -38,8 +38,8 @@ namespace SpeachBingCore.Controllers
             //   IBlobStorageRespository blob = new BlobStorageRespositary();
             //   CloudBlockBlob blob = container.GetBlockBlobReference(data.Uri.ToString());
             //      blob.UploadBlob(postedFile);
-         //   postedFile.SaveAs(Path.Combine(@"c:\AZ", "audio.wav"));
-            postedFile.SaveAs(Path.Combine(Server.MapPath("~/Resources/"), "audio.webm"));
+            postedFile.SaveAs(Path.Combine(@"c:\AZ", "audio.webm"));
+         //   postedFile.SaveAs(Path.Combine(Server.MapPath("~/Resources/"), "audio.webm"));
             return View("Index");
         }
         [HttpPost]
@@ -48,9 +48,10 @@ namespace SpeachBingCore.Controllers
         public async Task<ActionResult> Index(BingApi ba)
         {
             //   string path = Path.Combine(Server.MapPath("~/Resources/"), "whatstheweatherlike.wav");
-            string pathIn = Path.Combine(Server.MapPath("~/Resources/"), "audio.webm");
-            string pathOut = Path.Combine(Server.MapPath("~/Resources/"), "audio.wav");
+            string pathIn = (Path.Combine(@"c:\AZ", "audio.webm"));
+            string pathOut = (Path.Combine(@"c:\AZ", "audio.wav"));
             Process.Start(@"C:\ffmpeg\ffmpeg.exe", $"-y -i {pathIn} -acodec pcm_u8 -ar 48000 {pathOut}").WaitForExit(1000);
+
             try
             {
                 await ba.StartButton_Click(pathOut);

@@ -7,7 +7,7 @@
 {
     <!-- form goes here -->
 
-    <input type="submit" value="Start" />
+    <input type="submit" value="send" />
 }
 
 <div>
@@ -25,3 +25,58 @@
         <p>@ViewBag.logs</p>
     </td>
 </div>
+<!DOCTYPE html>
+<html>
+<button onclick="myFunctionStart()">start</button>
+<button onclick="myFunctionStop()">stop</button>
+<body>
+<script>
+    var recorder;
+    function myFunctionStop() {
+        recorder.stop();
+    }
+    //sample size audio {sampleSize: 16}
+    function myFunctionStart() {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => {
+            const chunks = [];
+            var options = {
+                audioBitsPerSecond: 128000,
+                mimeType: 'audio/wav'
+            };
+            recorder = new MediaRecorder(stream);
+            recorder.mimeType = "audio/wav";
+            recorder.ondataavailable = e => {
+                chunks.push(e.data);
+                if (recorder.state == 'inactive') {
+
+                    const blob = new Blob(chunks, { type: 'audio/wav'});
+
+
+                    var formData = new FormData();
+                    formData.append("postedFile", blob);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/Action',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            alert("Voice was recorded" + response);
+                        },
+                        error: function(response) {
+                            alert(response);
+                        }
+                    });
+                }
+            };
+
+            recorder.start(1000);
+            setTimeout(() => {
+                    recorder.stop();
+                },
+                15000);
+        }).catch(console.error);
+    }
+</script>
+</body>
+</html>
