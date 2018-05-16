@@ -34,18 +34,27 @@ namespace SpeachBingCore.Controllers
         [HttpPost]
         public ActionResult Action(HttpPostedFileBase postedFile)
         {
-            postedFile.SaveAs(Path.Combine(@"c:\AZ", "audio.webm"));
+            string serverPath = Server.MapPath("~/Resources");
+            var audioFile = Path.Combine(serverPath, "audio.webm");
+            System.IO.File.WriteAllText(Path.Combine(serverPath, "BeforeAudioSaveAs.txt"),$"{postedFile.ContentLength}, type:{postedFile.ContentType}, name:{postedFile.FileName}");
+            postedFile.SaveAs(audioFile);
+            System.IO.File.WriteAllText(Path.Combine(serverPath, "AfterAudioSaveAs.txt"), $"{audioFile}");
             return View("Index");
         }
+
         [HttpPost]
         //lime 
         //ffmpeg
         public async Task<ActionResult> Index(BingApi ba)
         {
-            //   string path = Path.Combine(Server.MapPath("~/Resources/"), "whatstheweatherlike.wav");
-            string pathIn = (Path.Combine(@"c:\AZ", "audio.webm"));
-            string pathOut = (Path.Combine(@"c:\AZ", "audio.wav"));
-            Process.Start(@"C:\ffmpeg\ffmpeg.exe", $"-y -i {pathIn} -acodec pcm_u8 -ar 48000 {pathOut}").WaitForExit(1000);
+         //      string pathIn = Path.Combine(Server.MapPath("~/Resources/"), "audio.webm");
+            // string pathIn = (Path.Combine(@"c:\AZ", "audio.webm"));
+         //   string pathOut = Path.Combine(Server.MapPath("~/Resources/"), "audio.wav");
+            string serverPath = Server.MapPath("~/Resources");
+            string pathIn = Path.Combine(serverPath, "audio.webm");
+            string pathOut = Path.Combine(serverPath, "audio.wav");
+            string converterPath = Path.Combine(serverPath, "ffmpeg","ffmpeg.exe");
+            Process.Start(converterPath, $"-y -i {pathIn} -acodec pcm_u8 -ar 48000 {pathOut}").WaitForExit(1000);
 
             try
             {

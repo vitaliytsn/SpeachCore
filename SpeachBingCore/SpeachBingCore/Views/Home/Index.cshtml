@@ -51,20 +51,20 @@
 
                     const blob = new Blob(chunks, { type: 'audio/wav'});
 
-
+                    ///dopisz href
                     var formData = new FormData();
                     formData.append("postedFile", blob);
                     $.ajax({
                         type: 'POST',
-                        url: '/Home/Action',
+                        url: window.location.href + '/Home/Action',
                         data: formData,
                         processData: false,
                         contentType: false,
                         success: function (response) {
-                            alert("Voice was recorded" + response);
+                            alert("Voice was recorded");
                         },
                         error: function(response) {
-                            alert(response);
+                            alert("blad");
                         }
                     });
                 }
