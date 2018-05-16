@@ -12,7 +12,6 @@ namespace SpeachBingCore.Controllers
 {
     public class HomeController : Controller
     {
-       
         public HomeController()
         {
            
@@ -35,11 +34,7 @@ namespace SpeachBingCore.Controllers
         [HttpPost]
         public ActionResult Action(HttpPostedFileBase postedFile)
         {
-            //   IBlobStorageRespository blob = new BlobStorageRespositary();
-            //   CloudBlockBlob blob = container.GetBlockBlobReference(data.Uri.ToString());
-            //      blob.UploadBlob(postedFile);
             postedFile.SaveAs(Path.Combine(@"c:\AZ", "audio.webm"));
-         //   postedFile.SaveAs(Path.Combine(Server.MapPath("~/Resources/"), "audio.webm"));
             return View("Index");
         }
         [HttpPost]

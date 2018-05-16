@@ -203,4 +203,6 @@ C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\B
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.Bing.Speech.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.VisualStudio.Threading.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\Microsoft.VisualStudio.Validation.xml
+C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\NAudio.dll
+C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\bin\NAudio.xml
 C:\Users\Vital\OneDrive\Documents\SpeachCore\SpeachBingCore\SpeachBingCore\obj\Release\SpeachBingCore.csprojResolveAssemblyReference.cache
