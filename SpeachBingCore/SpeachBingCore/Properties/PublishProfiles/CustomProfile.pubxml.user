@@ -241,13 +241,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/21/2017 23:42:00</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.dll">
-      <publishTime>05/28/2018 16:56:49</publishTime>
+      <publishTime>05/28/2018 20:10:09</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.pdb">
-      <publishTime>05/28/2018 16:56:49</publishTime>
+      <publishTime>05/28/2018 20:10:09</publishTime>
     </File>
     <File Include="bin/SpeechClient.dll">
-      <publishTime>05/13/2018 16:07:09</publishTime>
+      <publishTime>10/23/2017 11:03:44</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 03:04:30</publishTime>
@@ -278,6 +278,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>04/14/2018 20:31:39</publishTime>
+    </File>
+    <File Include="Content/Image/record.png">
+      <publishTime>05/28/2018 19:44:13</publishTime>
+    </File>
+    <File Include="Content/Image/record1.png">
+      <publishTime>05/28/2018 19:44:13</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>04/14/2018 20:31:33</publishTime>
@@ -349,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2018 09:01:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/28/2018 16:56:21</publishTime>
+      <publishTime>05/28/2018 20:09:57</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/14/2018 20:31:33</publishTime>
@@ -358,13 +364,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2018 14:32:53</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>05/16/2018 19:55:55</publishTime>
+      <publishTime>04/14/2018 20:31:33</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>04/14/2018 20:31:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/16/2018 19:55:55</publishTime>
+      <publishTime>05/28/2018 17:50:18</publishTime>
     </File>
   </ItemGroup>
 </Project>

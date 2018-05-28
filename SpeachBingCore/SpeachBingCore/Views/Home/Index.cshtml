@@ -32,20 +32,21 @@
 <!DOCTYPE html>
 <html>
 <center>
-    <img id="imageid" src="../../fonts/record.png" alt="image" onmousedown="myFunctionStart()" onmouseup="myFunctionStop()" />
+    <img id="imageid" src="@Url.Content("~/Content/Image/record.png")" runat="server" alt="image" onmousedown="myFunctionStart()" onmouseup="myFunctionStop()" />
 </center>
 <body>
     <script>
         var recorder;
-
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        recorder.stop();
         function myFunctionStop() {
-            document.getElementById("imageid").src = "../../fonts/record.png";
+        
+            document.getElementById("imageid").src = "@Url.Content("~/Content/Image/record.png")";
             recorder.stop();
         }
 
-        //sample size audio {sampleSize: 16}
         function myFunctionStart() {
-            document.getElementById("imageid").src = "../../fonts/record1.png";
+            document.getElementById("imageid").src = "@Url.Content("~/Content/Image/record1.png")";
             navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => {
                 const chunks = [];
                 var options = {
