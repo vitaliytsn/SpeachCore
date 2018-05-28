@@ -2,81 +2,90 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<center>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <!-- form goes here -->
 
-@using (Html.BeginForm("Index", "Home", FormMethod.Post))
-{
-    <!-- form goes here -->
-
-    <input type="submit" value="send" />
-}
+        <input type="submit" value="send" />
+    }
+</center>
 
 <div>
-
-    <h4>Speach Recognizer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dd>
-            @Html.DisplayFor(model => model._logText)
-        </dd>
-    </dl>
+    <center>
+        <h4>Speach Recognizer</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dd>
+                @Html.DisplayFor(model => model._logText)
+            </dd>
+        </dl>
+    </center>
 </div>
 <div>
-    <td>
-        <p>@ViewBag.logs</p>
-    </td>
+    <center>
+        <td>
+            <p>@ViewBag.logs</p>
+        </td>
+        </center>
 </div>
 <!DOCTYPE html>
 <html>
-<button onclick="myFunctionStart()">start</button>
-<button onclick="myFunctionStop()">stop</button>
+<center>
+    <img id="imageid" src="../../Resources/record.png" alt="image" onmousedown="myFunctionStart()" onmouseup="myFunctionStop()" />
+</center>
 <body>
-<script>
-    var recorder;
-    function myFunctionStop() {
-        recorder.stop();
-    }
-    //sample size audio {sampleSize: 16}
-    function myFunctionStart() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => {
-            const chunks = [];
-            var options = {
-                audioBitsPerSecond: 128000,
-                mimeType: 'audio/wav'
-            };
-            recorder = new MediaRecorder(stream);
-            recorder.mimeType = "audio/wav";
-            recorder.ondataavailable = e => {
-                chunks.push(e.data);
-                if (recorder.state == 'inactive') {
+    <script>
+        var recorder;
 
-                    const blob = new Blob(chunks, { type: 'audio/wav'});
+        function myFunctionStop() {
+            document.getElementById("imageid").src = "../../Resources/record.png";
+            recorder.stop();
+        }
 
-                    ///dopisz href
-                    var formData = new FormData();
-                    formData.append("postedFile", blob);
-                    $.ajax({
-                        type: 'POST',
-                        url: window.location.href + '/Home/Action',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-                            alert("Voice was recorded");
-                        },
-                        error: function(response) {
-                            alert("blad");
-                        }
-                    });
-                }
-            };
+        //sample size audio {sampleSize: 16}
+        function myFunctionStart() {
+            document.getElementById("imageid").src = "../../Resources/record1.png";
+            navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => {
+                const chunks = [];
+                var options = {
+                    audioBitsPerSecond: 128000,
+                    mimeType: 'audio/wav'
+                };
+                recorder = new MediaRecorder(stream);
+                recorder.mimeType = "audio/wav";
+                recorder.ondataavailable = e => {
+                    chunks.push(e.data);
+                    if (recorder.state == 'inactive') {
 
-            recorder.start(1000);
-            setTimeout(() => {
+                        const blob = new Blob(chunks, { type: 'audio/wav' });
+
+                        ///dopisz href
+                        var formData = new FormData();
+                        formData.append("postedFile", blob);
+                        $.ajax({
+                            type: 'POST',
+                            url: window.location.href + '/Home/Action',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                alert("Voice was recorded");
+                            },
+                            error: function (response) {
+                                alert("blad");
+                            }
+                        });
+                    }
+                };
+
+                recorder.start(1000);
+                setTimeout(() => {
                     recorder.stop();
                 },
-                15000);
-        }).catch(console.error);
-    }
-</script>
+                    15000);
+            }).catch(console.error);
+        }
+    </script>
 </body>
 </html>
