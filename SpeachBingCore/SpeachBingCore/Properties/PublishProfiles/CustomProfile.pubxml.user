@@ -241,10 +241,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/21/2017 23:42:00</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.dll">
-      <publishTime>05/28/2018 20:10:09</publishTime>
+      <publishTime>06/02/2018 16:18:15</publishTime>
     </File>
     <File Include="bin/SpeachBingCore.pdb">
-      <publishTime>05/28/2018 20:10:09</publishTime>
+      <publishTime>06/02/2018 16:18:15</publishTime>
     </File>
     <File Include="bin/SpeechClient.dll">
       <publishTime>10/23/2017 11:03:44</publishTime>
@@ -355,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2018 09:01:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/28/2018 20:09:57</publishTime>
+      <publishTime>06/02/2018 16:16:17</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/14/2018 20:31:33</publishTime>

@@ -32,15 +32,20 @@
 <!DOCTYPE html>
 <html>
 <center>
-    <img id="imageid" src="@Url.Content("~/Content/Image/record.png")" runat="server" alt="image" onmousedown="myFunctionStart()" onmouseup="myFunctionStop()" />
+    <img id="imageid" src="@Url.Content("~/Content/Image/record.png")" runat="server" alt="image"/>
+    <!-- <img id="imageid" src="@Url.Content("~/Content/Image/record.png")" runat="server" alt="image" onmousedown="myFunctionStart()" onmouseup="myFunctionStop()" />
+    -->
+  
 </center>
-<body>
-    <script>
+<center>
+    <button onclick="myFunctionStart()">start</button>
+<button onclick="myFunctionStop()">stop</button>
+</center>
+    <body>
+        <script>
         var recorder;
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        recorder.stop();
         function myFunctionStop() {
-        
+
             document.getElementById("imageid").src = "@Url.Content("~/Content/Image/record.png")";
             recorder.stop();
         }
@@ -87,6 +92,6 @@
                     15000);
             }).catch(console.error);
         }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
