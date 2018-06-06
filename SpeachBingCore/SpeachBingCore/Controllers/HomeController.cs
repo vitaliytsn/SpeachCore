@@ -6,7 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using SpeachBingCore.Models;
+using Vote.BL;
 
 namespace SpeachBingCore.Controllers
 {
@@ -27,8 +29,6 @@ namespace SpeachBingCore.Controllers
         }
         public ActionResult Error(Exception e)
         {
-       
-   
             return View();
         }
         [HttpPost]
@@ -69,6 +69,15 @@ namespace SpeachBingCore.Controllers
             while (ba._logText == null);
             ViewBag.logs = ba._logText;
             return View("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Dupex()
+        {
+           ApiCommunicator ac = new ApiCommunicator();
+           await ac.SendVoice(ViewBag.logs);
+            ViewBag.Answer = await ac.Answer();
+            return RedirectToAction("Index");
         }
 
     }

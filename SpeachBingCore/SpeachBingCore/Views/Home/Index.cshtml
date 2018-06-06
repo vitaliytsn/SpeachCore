@@ -3,7 +3,7 @@
     ViewBag.Title = "Home Page";
 }
 <center>
-    <button onclick="myFunctionStart()">Send Request</button>
+    <button onclick="myFunctionRest()">Send Request</button>
 </center>
 
 
@@ -50,8 +50,19 @@
 <button onclick="myFunctionStop()">stop</button>
 </center>
     <body>
-        <script>
+    <script>
         var recorder;
+        function myFunctionRest() {
+            $.ajax({
+                type: 'POST',
+                url: window.location.href + '/Home/Dupex',
+                processData: false,
+                contentType: false,
+                error: function (response) {
+                    alert("blad");
+                }
+            });
+        }
         function myFunctionStop() {
 
             document.getElementById("imageid").src = "@Url.Content("~/Content/Image/record.png")";
@@ -89,17 +100,25 @@
                             error: function (response) {
                                 alert("blad");
                             }
-                        });z
+                        });
                     }
                 };
 
                 recorder.start(1000);
                 setTimeout(() => {
-                    recorder.stop();
-                },
+                        recorder.stop();
+                    },
                     15000);
             }).catch(console.error);
         }
-        </script>
+    </script>
+    
+    <div>
+        <center>
+            <td>
+                <p>@ViewBag.Answer</p>
+            </td>
+        </center>
+    </div>
     </body>
 </html>
