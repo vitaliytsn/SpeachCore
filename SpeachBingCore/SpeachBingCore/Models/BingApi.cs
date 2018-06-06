@@ -157,7 +157,7 @@ namespace SpeachBingCore.Models
         public async Task StartButton_Click(string path)
         {
             this.Path = path;
-            SubscriptionKey = "7ce0affabcc648df8fc6d0a92fb8d5a0";
+            SubscriptionKey = "8c3ae34bb802411392ec8ed1fffa9dee";
 
             this.LogRecognitionStart();
 

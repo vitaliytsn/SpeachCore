@@ -3,13 +3,9 @@
     ViewBag.Title = "Home Page";
 }
 <center>
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-    {
-        <!-- form goes here -->
-
-        <input type="submit" value="send" />
-    }
+    <button onclick="myFunctionStart()">Send Request</button>
 </center>
+
 
 <div>
     <center>
@@ -22,13 +18,25 @@
         </dl>
     </center>
 </div>
+
+<div>
+    <center>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <!-- form goes here -->
+
+            <input type="submit" value="Voice To Text"/>
+        }
+    </center>
+</div>
 <div>
     <center>
         <td>
             <p>@ViewBag.logs</p>
         </td>
-        </center>
+    </center>
 </div>
+
 <!DOCTYPE html>
 <html>
 <center>
@@ -81,7 +89,7 @@
                             error: function (response) {
                                 alert("blad");
                             }
-                        });
+                        });z
                     }
                 };
 
