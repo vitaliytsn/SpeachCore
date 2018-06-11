@@ -14,6 +14,8 @@ namespace SpeachBingCore.Controllers
 {
     public class HomeController : Controller
     {
+
+      
         public HomeController()
         {
            
@@ -22,8 +24,8 @@ namespace SpeachBingCore.Controllers
         public BingApi ba;
         public ActionResult Index()
         {
-        
-            ba = new BingApi();
+            
+               ba = new BingApi();
             ViewBag.logs = ba._logText;
             return View();
         }
